@@ -1,12 +1,65 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+// Subscription Tracker Dashboard - Professional Design
+import React, { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { fetchSubscriptionsRequested } from '../features/subscriptions/subscriptionsSlice';
+import { fetchAnalyticsRequested } from '../features/dashboard/dashboardSlice';
+import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+import { StatsCards } from '../components/dashboard/StatsCards';
+import { UpcomingPayments } from '../components/dashboard/UpcomingPayments';
+import { SubscriptionsList } from '../components/subscriptions/SubscriptionsList';
+import { SpendingChart } from '../components/dashboard/SpendingChart';
 
 const Index = () => {
+  const dispatch = useAppDispatch();
+  const { loading: subscriptionsLoading, items: subscriptions } = useAppSelector(state => state.subscriptions);
+  const { loading: analyticsLoading, analytics } = useAppSelector(state => state.dashboard);
+
+  useEffect(() => {
+    dispatch(fetchSubscriptionsRequested());
+    dispatch(fetchAnalyticsRequested());
+  }, [dispatch]);
+
+  const isLoading = subscriptionsLoading || analyticsLoading;
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-gradient-surface">
+      {/* Header */}
+      <DashboardHeader />
+      
+      {/* Main Content */}
+      <main className="container mx-auto px-6 py-8">
+        {/* Stats Overview */}
+        <section className="mb-8">
+          <StatsCards analytics={analytics} loading={isLoading} />
+        </section>
+
+        {/* Dashboard Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Left Column - Spending Chart */}
+          <div className="lg:col-span-2">
+            <SpendingChart 
+              data={analytics?.monthlyTrend || []} 
+              loading={isLoading}
+            />
+          </div>
+
+          {/* Right Column - Upcoming Payments */}
+          <div>
+            <UpcomingPayments 
+              payments={analytics?.upcomingPayments || []} 
+              loading={isLoading}
+            />
+          </div>
+        </div>
+
+        {/* Subscriptions List */}
+        <section className="mt-8">
+          <SubscriptionsList 
+            subscriptions={subscriptions}
+            loading={isLoading}
+          />
+        </section>
+      </main>
     </div>
   );
 };

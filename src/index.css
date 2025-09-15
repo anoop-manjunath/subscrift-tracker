@@ -2,95 +2,126 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Professional Subscription Tracker Design System */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    /* Core Brand Colors - Financial App Psychology */
+    --background: 222 84% 97%;
+    --foreground: 222 47% 11%;
+    
+    /* Trust & Finance - Deep Blues */
+    --primary: 224 76% 48%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 224 76% 68%;
+    
+    /* Success & Growth - Emerald */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --success-glow: 142 76% 56%;
+    
+    /* Warning & Attention - Amber */
+    --warning: 38 92% 50%;
+    --warning-foreground: 38 92% 10%;
+    --warning-glow: 38 92% 70%;
+    
+    /* Danger & Critical - Red */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --destructive-glow: 0 84% 80%;
+    
+    /* Surface & Cards */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --card-foreground: 222 47% 11%;
+    --card-border: 222 13% 91%;
+    
+    /* Interactive Elements */
+    --secondary: 222 13% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --accent: 262 76% 96%;
+    --accent-foreground: 262 76% 15%;
+    
+    /* Text Hierarchy */
+    --muted: 222 13% 96%;
+    --muted-foreground: 222 13% 46%;
+    --subtle: 222 13% 65%;
+    
+    /* Form Elements */
+    --border: 222 13% 91%;
+    --input: 222 13% 96%;
+    --ring: 224 76% 48%;
+    
+    /* Layout */
+    --radius: 0.75rem;
+    --sidebar-width: 280px;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-success: linear-gradient(135deg, hsl(var(--success)), hsl(var(--success-glow)));
+    --gradient-hero: linear-gradient(135deg, hsl(224 76% 48%), hsl(262 76% 58%));
+    --gradient-surface: linear-gradient(180deg, hsl(0 0% 100%), hsl(222 13% 98%));
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(222 47% 11% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(222 47% 11% / 0.1), 0 2px 4px -1px hsl(222 47% 11% / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(222 47% 11% / 0.1), 0 4px 6px -2px hsl(222 47% 11% / 0.05);
+    --shadow-glow: 0 0 30px hsl(var(--primary-glow) / 0.3);
+    
+    /* Animations */
+    --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Dark Theme - Professional Finance App */
+    --background: 222 47% 6%;
+    --foreground: 222 13% 95%;
+    
+    --primary: 224 76% 58%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 224 76% 78%;
+    
+    --success: 142 76% 46%;
+    --success-foreground: 0 0% 100%;
+    --success-glow: 142 76% 66%;
+    
+    --warning: 38 92% 60%;
+    --warning-foreground: 38 92% 5%;
+    --warning-glow: 38 92% 80%;
+    
+    --destructive: 0 84% 70%;
+    --destructive-foreground: 0 0% 100%;
+    --destructive-glow: 0 84% 90%;
+    
+    --card: 222 47% 8%;
+    --card-foreground: 222 13% 95%;
+    --card-border: 222 47% 15%;
+    
+    --secondary: 222 47% 12%;
+    --secondary-foreground: 222 13% 95%;
+    --accent: 262 76% 12%;
+    --accent-foreground: 262 76% 85%;
+    
+    --muted: 222 47% 12%;
+    --muted-foreground: 222 13% 65%;
+    --subtle: 222 13% 45%;
+    
+    --border: 222 47% 15%;
+    --input: 222 47% 12%;
+    --ring: 224 76% 58%;
+    
+    /* Dark Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-success: linear-gradient(135deg, hsl(var(--success)), hsl(var(--success-glow)));
+    --gradient-hero: linear-gradient(135deg, hsl(224 76% 58%), hsl(262 76% 68%));
+    --gradient-surface: linear-gradient(180deg, hsl(222 47% 8%), hsl(222 47% 6%));
+    
+    /* Dark Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(222 47% 2% / 0.3);
+    --shadow-md: 0 4px 6px -1px hsl(222 47% 2% / 0.4), 0 2px 4px -1px hsl(222 47% 2% / 0.2);
+    --shadow-lg: 0 10px 15px -3px hsl(222 47% 2% / 0.5), 0 4px 6px -2px hsl(222 47% 2% / 0.3);
+    --shadow-glow: 0 0 30px hsl(var(--primary-glow) / 0.2);
   }
 }
 
@@ -100,6 +131,48 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    min-height: 100vh;
+  }
+  
+  /* Professional Typography */
+  .text-gradient {
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Smooth Animations */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Custom Scrollbars */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 3px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
   }
 }
