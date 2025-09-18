@@ -1,5 +1,5 @@
 // Subscriptions List - Main Data Table Component
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -16,6 +16,7 @@ import {
   Trash2
 } from 'lucide-react';
 import { Subscription } from '../../types/subscription';
+import { AddSubscriptionDialog } from './AddSubscriptionDialog';
 
 interface SubscriptionsListProps {
   subscriptions: Subscription[];
@@ -26,6 +27,7 @@ export const SubscriptionsList: React.FC<SubscriptionsListProps> = ({
   subscriptions, 
   loading 
 }) => {
+  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   if (loading) {
     return (
       <Card className="bg-card border-card-border">
@@ -125,7 +127,7 @@ export const SubscriptionsList: React.FC<SubscriptionsListProps> = ({
               <Filter className="h-4 w-4 mr-2" />
               Filter
             </Button>
-            <Button size="sm" className="bg-gradient-primary">
+            <Button size="sm" className="bg-gradient-primary" onClick={() => setIsAddDialogOpen(true)}>
               <Plus className="h-4 w-4 mr-2" />
               Add New
             </Button>
@@ -143,7 +145,7 @@ export const SubscriptionsList: React.FC<SubscriptionsListProps> = ({
             <p className="text-muted-foreground mb-6">
               Start tracking your subscriptions to get insights into your spending
             </p>
-            <Button className="bg-gradient-primary">
+            <Button className="bg-gradient-primary" onClick={() => setIsAddDialogOpen(true)}>
               <Plus className="h-4 w-4 mr-2" />
               Add Your First Subscription
             </Button>
@@ -240,6 +242,11 @@ export const SubscriptionsList: React.FC<SubscriptionsListProps> = ({
           </div>
         )}
       </CardContent>
+      
+      <AddSubscriptionDialog 
+        open={isAddDialogOpen} 
+        onOpenChange={setIsAddDialogOpen} 
+      />
     </Card>
   );
 };
