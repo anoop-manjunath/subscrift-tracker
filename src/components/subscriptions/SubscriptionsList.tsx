@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { Skeleton } from '@/components/ui/skeleton';
 import { 
   CreditCard, 
@@ -17,6 +18,8 @@ import {
 } from 'lucide-react';
 import { Subscription } from '../../types/subscription';
 import { AddSubscriptionDialog } from './AddSubscriptionDialog';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { setFilters } from '../../features/subscriptions/subscriptionsSlice';
 
 interface SubscriptionsListProps {
   subscriptions: Subscription[];
@@ -28,6 +31,12 @@ export const SubscriptionsList: React.FC<SubscriptionsListProps> = ({
   loading 
 }) => {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+  const dispatch = useAppDispatch();
+  const { search } = useAppSelector(state => state.subscriptions.filters);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setFilters({ search: e.target.value }));
+  };
   if (loading) {
     return (
       <Card className="bg-card border-card-border">
@@ -119,10 +128,15 @@ export const SubscriptionsList: React.FC<SubscriptionsListProps> = ({
           </CardTitle>
           
           <div className="flex items-center gap-2">
-            <Button variant="outline" size="sm">
-              <Search className="h-4 w-4 mr-2" />
-              Search
-            </Button>
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Search subscriptions..."
+                value={search}
+                onChange={handleSearchChange}
+                className="pl-10 w-64 bg-background/50 border-card-border focus:bg-background transition-fast"
+              />
+            </div>
             <Button variant="outline" size="sm">
               <Filter className="h-4 w-4 mr-2" />
               Filter
