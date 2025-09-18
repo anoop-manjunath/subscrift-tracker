@@ -1,9 +1,12 @@
 // Dashboard Header - Professional Navigation and Branding
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Plus, Settings, Bell } from 'lucide-react';
+import { AddSubscriptionDialog } from '@/components/subscriptions/AddSubscriptionDialog';
 
 export const DashboardHeader = () => {
+  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+
   return (
     <header className="border-b border-card-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
       <div className="container mx-auto px-6 py-4">
@@ -44,6 +47,7 @@ export const DashboardHeader = () => {
             <Button 
               size="sm"
               className="bg-gradient-primary hover:shadow-glow transition-smooth"
+              onClick={() => setIsAddDialogOpen(true)}
             >
               <Plus className="h-4 w-4 mr-2" />
               Add Subscription
@@ -51,6 +55,11 @@ export const DashboardHeader = () => {
           </div>
         </div>
       </div>
+      
+      <AddSubscriptionDialog 
+        open={isAddDialogOpen} 
+        onOpenChange={setIsAddDialogOpen} 
+      />
     </header>
   );
 };
