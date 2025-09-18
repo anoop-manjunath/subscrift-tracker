@@ -1,11 +1,20 @@
 // Dashboard Header - Professional Navigation and Branding
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Plus, Settings, Bell } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Plus, Settings, Bell, Search } from 'lucide-react';
 import { AddSubscriptionDialog } from '@/components/subscriptions/AddSubscriptionDialog';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { setFilters } from '../../features/subscriptions/subscriptionsSlice';
 
 export const DashboardHeader = () => {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+  const dispatch = useAppDispatch();
+  const { search } = useAppSelector(state => state.subscriptions.filters);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setFilters({ search: e.target.value }));
+  };
 
   return (
     <header className="border-b border-card-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
@@ -26,32 +35,45 @@ export const DashboardHeader = () => {
             </div>
           </div>
 
-          {/* Navigation Actions */}
-          <div className="flex items-center gap-3">
-            <Button 
-              variant="ghost" 
-              size="icon"
-              className="hover:bg-accent transition-fast"
-            >
-              <Bell className="h-5 w-5" />
-            </Button>
-            
-            <Button 
-              variant="ghost" 
-              size="icon"
-              className="hover:bg-accent transition-fast"
-            >
-              <Settings className="h-5 w-5" />
-            </Button>
+          {/* Search and Navigation Actions */}
+          <div className="flex items-center gap-4">
+            {/* Search Input */}
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Search subscriptions..."
+                value={search}
+                onChange={handleSearchChange}
+                className="pl-10 w-64 bg-background/50 border-card-border focus:bg-background transition-fast"
+              />
+            </div>
 
-            <Button 
-              size="sm"
-              className="bg-gradient-primary hover:shadow-glow transition-smooth"
-              onClick={() => setIsAddDialogOpen(true)}
-            >
-              <Plus className="h-4 w-4 mr-2" />
-              Add Subscription
-            </Button>
+            <div className="flex items-center gap-3">
+              <Button 
+                variant="ghost" 
+                size="icon"
+                className="hover:bg-accent transition-fast"
+              >
+                <Bell className="h-5 w-5" />
+              </Button>
+              
+              <Button 
+                variant="ghost" 
+                size="icon"
+                className="hover:bg-accent transition-fast"
+              >
+                <Settings className="h-5 w-5" />
+              </Button>
+
+              <Button 
+                size="sm"
+                className="bg-gradient-primary hover:shadow-glow transition-smooth"
+                onClick={() => setIsAddDialogOpen(true)}
+              >
+                <Plus className="h-4 w-4 mr-2" />
+                Add Subscription
+              </Button>
+            </div>
           </div>
         </div>
       </div>

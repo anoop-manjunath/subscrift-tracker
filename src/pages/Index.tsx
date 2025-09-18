@@ -19,6 +19,12 @@ const Index = () => {
     dispatch(fetchAnalyticsRequested());
   }, [dispatch]);
 
+  // Refetch when filters change
+  const filters = useAppSelector(state => state.subscriptions.filters);
+  useEffect(() => {
+    dispatch(fetchSubscriptionsRequested());
+  }, [dispatch, filters]);
+
   const isLoading = subscriptionsLoading || analyticsLoading;
 
   return (
