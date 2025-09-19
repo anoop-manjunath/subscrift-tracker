@@ -1,9 +1,11 @@
 // Stats Cards - Financial Overview Components
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { TrendingUp, TrendingDown, DollarSign, Calendar, CreditCard } from 'lucide-react';
 import { SpendingAnalytics } from '../../types/subscription';
+import { useSettings } from '../../hooks/useSettings';
 
 interface StatsCardsProps {
   analytics: SpendingAnalytics | null;
@@ -11,6 +13,9 @@ interface StatsCardsProps {
 }
 
 export const StatsCards: React.FC<StatsCardsProps> = ({ analytics, loading }) => {
+  const { t } = useTranslation();
+  const { formatPrice } = useSettings();
+  
   if (loading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -37,8 +42,8 @@ export const StatsCards: React.FC<StatsCardsProps> = ({ analytics, loading }) =>
 
   const stats = [
     {
-      title: 'Monthly Spending',
-      value: `$${monthlySpend.toFixed(2)}`,
+      title: t('dashboard.totalSpending'),
+      value: formatPrice(monthlySpend),
       icon: DollarSign,
       trend: `${isPositiveTrend ? '+' : ''}${monthlyTrend.toFixed(1)}%`,
       trendIcon: isPositiveTrend ? TrendingUp : TrendingDown,
@@ -47,7 +52,7 @@ export const StatsCards: React.FC<StatsCardsProps> = ({ analytics, loading }) =>
     },
     {
       title: 'Annual Projection',
-      value: `$${annualSpend.toFixed(2)}`,
+      value: formatPrice(annualSpend),
       icon: Calendar,
       trend: 'Based on current',
       trendIcon: null,
@@ -55,7 +60,7 @@ export const StatsCards: React.FC<StatsCardsProps> = ({ analytics, loading }) =>
       gradient: 'bg-gradient-success',
     },
     {
-      title: 'Active Subscriptions',
+      title: t('dashboard.activeSubscriptions'),
       value: analytics ? Object.keys(analytics.categoryBreakdown).length.toString() : '0',
       icon: CreditCard,
       trend: 'Services tracked',
@@ -64,7 +69,7 @@ export const StatsCards: React.FC<StatsCardsProps> = ({ analytics, loading }) =>
       gradient: 'bg-accent',
     },
     {
-      title: 'Upcoming Payments',
+      title: t('dashboard.upcomingPayments'),
       value: upcomingCount.toString(),
       icon: Calendar,
       trend: 'Next 30 days',

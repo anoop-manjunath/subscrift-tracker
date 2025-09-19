@@ -1,0 +1,97 @@
+{
+  "common": {
+    "save": "सेव करें",
+    "cancel": "रद्द करें", 
+    "reset": "रीसेट करें",
+    "loading": "लोड हो रहा है...",
+    "error": "त्रुटि",
+    "success": "सफलता",
+    "search": "खोजें...",
+    "filter": "फ़िल्टर",
+    "actions": "क्रियाएं"
+  },
+  "navigation": {
+    "dashboard": "डैशबोर्ड",
+    "subscriptions": "सब्स्क्रिप्शन",
+    "analytics": "विश्लेषण",
+    "settings": "सेटिंग्स"
+  },
+  "dashboard": {
+    "title": "सब्स्क्रिप्शन ट्रैकर",
+    "subtitle": "अपनी सब्स्क्रिप्शन को आसानी से प्रबंधित करें",
+    "totalSpending": "कुल खर्च",
+    "activeSubscriptions": "सक्रिय सब्स्क्रिप्शन",
+    "upcomingPayments": "आगामी भुगतान",
+    "monthlyTrend": "मासिक खर्च प्रवृत्ति",
+    "addSubscription": "सब्स्क्रिप्शन जोड़ें"
+  },
+  "subscriptions": {
+    "title": "आपकी सब्स्क्रिप्शन",
+    "noSubscriptions": "कोई सब्स्क्रिप्शन नहीं मिली",
+    "noSubscriptionsDesc": "अपने खर्चों को ट्रैक करने के लिए पहली सब्स्क्रिप्शन जोड़कर शुरुआत करें।",
+    "status": {
+      "active": "सक्रिय",
+      "cancelled": "रद्द",
+      "paused": "रोका गया"
+    },
+    "billingCycle": {
+      "monthly": "मासिक",
+      "yearly": "वार्षिक", 
+      "weekly": "साप्ताहिक"
+    },
+    "addNew": "नई सब्स्क्रिप्शन जोड़ें",
+    "edit": "संपादित करें",
+    "delete": "हटाएं",
+    "nextPayment": "अगला भुगतान"
+  },
+  "settings": {
+    "title": "सेटिंग्स",
+    "subtitle": "अपनी प्राथमिकताएं अनुकूलित करें",
+    "tabs": {
+      "general": "सामान्य",
+      "display": "प्रदर्शन",
+      "localization": "स्थानीयकरण"
+    },
+    "timezone": {
+      "label": "समय क्षेत्र",
+      "description": "सटीक दिनांक प्रदर्शन के लिए अपना स्थानीय समय क्षेत्र चुनें",
+      "placeholder": "समय क्षेत्र चुनें..."
+    },
+    "dateFormat": {
+      "label": "दिनांक प्रारूप",
+      "description": "चुनें कि ऐप में दिनांक कैसे प्रदर्शित किए जाते हैं",
+      "formats": {
+        "mdy": "MM/DD/YYYY (अमेरिकी प्रारूप)",
+        "dmy": "DD/MM/YYYY (यूरोपीय प्रारूप)",
+        "ymd": "YYYY-MM-DD (ISO प्रारूप)", 
+        "verbose": "DD MMM YYYY (विस्तृत प्रारूप)"
+      }
+    },
+    "currency": {
+      "label": "मुद्रा",
+      "description": "कीमतों को प्रदर्शित करने के लिए अपनी पसंदीदा मुद्रा चुनें",
+      "placeholder": "मुद्रा चुनें..."
+    },
+    "language": {
+      "label": "भाषा",
+      "description": "इंटरफेस के लिए अपनी पसंदीदा भाषा चुनें",
+      "options": {
+        "en": "English",
+        "hi": "हिंदी (Hindi)"
+      }
+    },
+    "notifications": {
+      "settingsUpdated": "सेटिंग्स सफलतापूर्वक अपडेट हो गई हैं",
+      "settingsError": "सेटिंग्स अपडेट करने में विफल। कृपया पुनः प्रयास करें।",
+      "resetConfirm": "क्या आप वाकई सभी सेटिंग्स को डिफ़ॉल्ट मानों पर रीसेट करना चाहते हैं?"
+    }
+  },
+  "forms": {
+    "validation": {
+      "required": "यह फील्ड आवश्यक है",
+      "invalidEmail": "कृपया एक वैध ईमेल पता दर्ज करें",
+      "minLength": "कम से कम {{count}} वर्ण होने चाहिए",
+      "maxLength": "{{count}} वर्णों से अधिक नहीं होना चाहिए"
+    }
+  }
+}

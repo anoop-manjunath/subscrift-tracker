@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import './i18n/i18n'; // Initialize i18n
 
 const queryClient = new QueryClient();
 

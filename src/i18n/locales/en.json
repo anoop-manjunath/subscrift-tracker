@@ -1,0 +1,97 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "reset": "Reset",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "search": "Search...",
+    "filter": "Filter",
+    "actions": "Actions"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "subscriptions": "Subscriptions",
+    "analytics": "Analytics",
+    "settings": "Settings"
+  },
+  "dashboard": {
+    "title": "Subscription Tracker",
+    "subtitle": "Manage your subscriptions effortlessly",
+    "totalSpending": "Total Spending",
+    "activeSubscriptions": "Active Subscriptions",
+    "upcomingPayments": "Upcoming Payments",
+    "monthlyTrend": "Monthly Spending Trend",
+    "addSubscription": "Add Subscription"
+  },
+  "subscriptions": {
+    "title": "Your Subscriptions",
+    "noSubscriptions": "No subscriptions found",
+    "noSubscriptionsDesc": "Start by adding your first subscription to track your expenses.",
+    "status": {
+      "active": "Active",
+      "cancelled": "Cancelled",
+      "paused": "Paused"
+    },
+    "billingCycle": {
+      "monthly": "Monthly",
+      "yearly": "Yearly",
+      "weekly": "Weekly"
+    },
+    "addNew": "Add New Subscription",
+    "edit": "Edit",
+    "delete": "Delete",
+    "nextPayment": "Next Payment"
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Customize your preferences",
+    "tabs": {
+      "general": "General",
+      "display": "Display",
+      "localization": "Localization"
+    },
+    "timezone": {
+      "label": "Timezone",
+      "description": "Select your local timezone for accurate date displays",
+      "placeholder": "Select timezone..."
+    },
+    "dateFormat": {
+      "label": "Date Format",
+      "description": "Choose how dates are displayed throughout the app",
+      "formats": {
+        "mdy": "MM/DD/YYYY (US Format)",
+        "dmy": "DD/MM/YYYY (European Format)", 
+        "ymd": "YYYY-MM-DD (ISO Format)",
+        "verbose": "DD MMM YYYY (Verbose Format)"
+      }
+    },
+    "currency": {
+      "label": "Default Currency",
+      "description": "Select your preferred currency for displaying prices",
+      "placeholder": "Select currency..."
+    },
+    "language": {
+      "label": "Language",
+      "description": "Choose your preferred language for the interface",
+      "options": {
+        "en": "English",
+        "hi": "हिंदी (Hindi)"
+      }
+    },
+    "notifications": {
+      "settingsUpdated": "Settings have been updated successfully",
+      "settingsError": "Failed to update settings. Please try again.",
+      "resetConfirm": "Are you sure you want to reset all settings to default values?"
+    }
+  },
+  "forms": {
+    "validation": {
+      "required": "This field is required",
+      "invalidEmail": "Please enter a valid email address",
+      "minLength": "Must be at least {{count}} characters",
+      "maxLength": "Must not exceed {{count}} characters"
+    }
+  }
+}

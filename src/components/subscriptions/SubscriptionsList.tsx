@@ -1,5 +1,6 @@
 // Subscriptions List - Main Data Table Component
 import React, { useState, memo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -19,6 +20,7 @@ import {
 import { Subscription } from '../../types/subscription';
 import { AddSubscriptionDialog } from './AddSubscriptionDialog';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { useSettings } from '../../hooks/useSettings';
 import { setFilters } from '../../features/subscriptions/subscriptionsSlice';
 
 interface SubscriptionsListProps {
@@ -30,6 +32,8 @@ export const SubscriptionsList: React.FC<SubscriptionsListProps> = memo(({
   subscriptions, 
   loading 
 }) => {
+  const { t } = useTranslation();
+  const { formatPrice: formatCurrency, formatDate: formatDateSetting } = useSettings();
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const dispatch = useAppDispatch();
   const { search } = useAppSelector(state => state.subscriptions.filters);
@@ -62,12 +66,8 @@ export const SubscriptionsList: React.FC<SubscriptionsListProps> = memo(({
     return colors[category] || colors.other;
   };
 
-  const formatPrice = (price: number, currency: string) => {
-    const amount = price / 100; // Convert from minor units
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: currency,
-    }).format(amount);
+  const formatPrice = (price: number, currency: string = 'USD') => {
+    return formatCurrency(price / 100); // Convert from minor units and use settings
   };
 
   const formatNextBilling = (dateString: string) => {
@@ -200,7 +200,7 @@ export const SubscriptionsList: React.FC<SubscriptionsListProps> = memo(({
                 {/* Price */}
                 <div className="text-right">
                   <p className="font-semibold text-foreground">
-                    {formatPrice(subscription.price, subscription.currency)}
+                    {formatPrice(subscription.price)}
                   </p>
                   <p className="text-sm text-muted-foreground">
                     per {subscription.billingCycle.slice(0, -2)}

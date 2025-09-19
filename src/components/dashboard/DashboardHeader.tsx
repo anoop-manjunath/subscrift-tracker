@@ -1,14 +1,18 @@
 // Dashboard Header - Professional Navigation and Branding
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Plus, Settings, Bell, Search } from 'lucide-react';
 import { AddSubscriptionDialog } from '@/components/subscriptions/AddSubscriptionDialog';
+import { SettingsDialog } from '@/components/settings/SettingsDialog';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { setFilters } from '../../features/subscriptions/subscriptionsSlice';
 
 export const DashboardHeader = () => {
+  const { t } = useTranslation();
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const dispatch = useAppDispatch();
   const { search } = useAppSelector(state => state.subscriptions.filters);
 
@@ -27,10 +31,10 @@ export const DashboardHeader = () => {
             </div>
             <div>
               <h1 className="text-2xl font-bold text-gradient">
-                SubTracker Pro
+                {t('dashboard.title')}
               </h1>
               <p className="text-sm text-subtle">
-                Manage your subscriptions with confidence
+                {t('dashboard.subtitle')}
               </p>
             </div>
           </div>
@@ -41,7 +45,7 @@ export const DashboardHeader = () => {
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Search subscriptions..."
+                placeholder={t('common.search')}
                 value={search}
                 onChange={handleSearchChange}
                 className="pl-10 w-64 bg-background/50 border-card-border focus:bg-background transition-fast"
@@ -61,6 +65,7 @@ export const DashboardHeader = () => {
                 variant="ghost" 
                 size="icon"
                 className="hover:bg-accent transition-fast"
+                onClick={() => setIsSettingsOpen(true)}
               >
                 <Settings className="h-5 w-5" />
               </Button>
@@ -71,7 +76,7 @@ export const DashboardHeader = () => {
                 onClick={() => setIsAddDialogOpen(true)}
               >
                 <Plus className="h-4 w-4 mr-2" />
-                Add Subscription
+                {t('dashboard.addSubscription')}
               </Button>
             </div>
           </div>
@@ -81,6 +86,10 @@ export const DashboardHeader = () => {
       <AddSubscriptionDialog 
         open={isAddDialogOpen} 
         onOpenChange={setIsAddDialogOpen} 
+      />
+      <SettingsDialog 
+        open={isSettingsOpen} 
+        onOpenChange={setIsSettingsOpen} 
       />
     </header>
   );

@@ -1,8 +1,10 @@
 // Subscription Tracker Dashboard - Professional Design
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { fetchSubscriptionsRequested } from '../features/subscriptions/subscriptionsSlice';
 import { fetchAnalyticsRequested } from '../features/dashboard/dashboardSlice';
+import { loadSettingsRequested } from '../features/settings/settingsSlice';
 import { DashboardHeader } from '../components/dashboard/DashboardHeader';
 import { StatsCards } from '../components/dashboard/StatsCards';
 import { UpcomingPayments } from '../components/dashboard/UpcomingPayments';
@@ -10,11 +12,15 @@ import { SubscriptionsList } from '../components/subscriptions/SubscriptionsList
 import { SpendingChart } from '../components/dashboard/SpendingChart';
 
 const Index = () => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { loading: subscriptionsLoading, items: subscriptions } = useAppSelector(state => state.subscriptions);
   const { loading: analyticsLoading, analytics } = useAppSelector(state => state.dashboard);
+  const { loading: settingsLoading } = useAppSelector(state => state.settings);
 
   useEffect(() => {
+    // Load settings first, then other data
+    dispatch(loadSettingsRequested());
     dispatch(fetchSubscriptionsRequested());
     dispatch(fetchAnalyticsRequested());
   }, [dispatch]);
@@ -25,7 +31,7 @@ const Index = () => {
     dispatch(fetchSubscriptionsRequested());
   }, [dispatch, filters]);
 
-  const isLoading = subscriptionsLoading || analyticsLoading;
+  const isLoading = subscriptionsLoading || analyticsLoading || settingsLoading;
 
   return (
     <div className="min-h-screen bg-gradient-surface">
