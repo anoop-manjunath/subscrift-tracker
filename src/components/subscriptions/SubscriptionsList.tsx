@@ -37,34 +37,6 @@ export const SubscriptionsList: React.FC<SubscriptionsListProps> = memo(({
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setFilters({ search: e.target.value }));
   };
-  if (loading) {
-    return (
-      <Card className="bg-card border-card-border">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <CreditCard className="h-5 w-5" />
-            Your Subscriptions
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className="flex items-center gap-4 p-4 border border-border rounded-lg">
-                <Skeleton className="h-12 w-12 rounded-lg" />
-                <div className="flex-1">
-                  <Skeleton className="h-5 w-32 mb-2" />
-                  <Skeleton className="h-4 w-24" />
-                </div>
-                <Skeleton className="h-6 w-16" />
-                <Skeleton className="h-8 w-20" />
-                <Skeleton className="h-8 w-8" />
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-    );
-  }
 
   const getStatusColor = (status: Subscription['status']) => {
     switch (status) {
@@ -150,7 +122,22 @@ export const SubscriptionsList: React.FC<SubscriptionsListProps> = memo(({
       </CardHeader>
       
       <CardContent>
-        {subscriptions.length === 0 ? (
+        {loading ? (
+          <div className="space-y-4">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <div key={i} className="flex items-center gap-4 p-4 border border-border rounded-lg">
+                <Skeleton className="h-12 w-12 rounded-lg" />
+                <div className="flex-1">
+                  <Skeleton className="h-5 w-32 mb-2" />
+                  <Skeleton className="h-4 w-24" />
+                </div>
+                <Skeleton className="h-6 w-16" />
+                <Skeleton className="h-8 w-20" />
+                <Skeleton className="h-8 w-8" />
+              </div>
+            ))}
+          </div>
+        ) : subscriptions.length === 0 ? (
           <div className="text-center py-12">
             <CreditCard className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
             <h3 className="text-lg font-medium text-foreground mb-2">
