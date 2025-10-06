@@ -14,11 +14,6 @@ interface SpendingChartProps {
 export const SpendingChart: React.FC<SpendingChartProps> = ({ data, loading }) => {
   const { formatPrice } = useSettings();
   
-  // Debug logging
-  console.log('SpendingChart - data:', data);
-  console.log('SpendingChart - loading:', loading);
-  console.log('SpendingChart - data length:', data?.length);
-  
   if (loading) {
     return (
       <Card className="bg-card border-card-border">
@@ -45,10 +40,6 @@ export const SpendingChart: React.FC<SpendingChartProps> = ({ data, loading }) =
   const maxAmount = Math.max(...data.map(d => d.amount));
   const minAmount = Math.min(...data.map(d => d.amount));
   const range = maxAmount - minAmount || 1;
-  
-  console.log('SpendingChart - maxAmount:', maxAmount);
-  console.log('SpendingChart - minAmount:', minAmount);
-  console.log('SpendingChart - range:', range);
 
   return (
     <Card className="bg-card border-card-border">
@@ -62,11 +53,8 @@ export const SpendingChart: React.FC<SpendingChartProps> = ({ data, loading }) =
         <div className="h-64 flex items-end justify-between gap-2">
           {data.map((item, index) => {
             const height = ((item.amount - minAmount) / range) * 80 + 20;
+            const heightInPx = (height / 100) * 256; // Convert to pixels (h-64 = 256px)
             const isHighest = item.amount === maxAmount;
-            
-            if (index === 0) {
-              console.log('First bar - amount:', item.amount, 'height:', height);
-            }
             
             return (
               <div 
@@ -89,7 +77,7 @@ export const SpendingChart: React.FC<SpendingChartProps> = ({ data, loading }) =
                     }
                   `}
                   style={{ 
-                    height: `${height}%`,
+                    height: `${heightInPx}px`,
                     animationDelay: `${index * 50}ms`,
                   }}
                 />
