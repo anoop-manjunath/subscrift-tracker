@@ -200,8 +200,11 @@ const Login = () => {
           {formState === 'email' && (
             <>
               <div className="text-center mb-8">
-                <h1 className="text-3xl font-bold text-gradient mb-3">Track all your subscriptions in one place</h1>
-                <p className="text-muted-foreground mb-1">Sign in or create an account with a 6-digit code — no password.</p>
+                <div className="flex justify-center mb-6">
+                  <img src="/placeholder.svg" alt="Logo" className="h-16 w-16" />
+                </div>
+                <h1 className="text-2xl md:text-3xl font-bold text-gradient mb-3">Track all your subscriptions in one place</h1>
+                <p className="text-muted-foreground mb-1">Sign in or create an account with a 6-digit code.</p>
                 <p className="text-muted-foreground">Enter your email and we'll send the code.</p>
               </div>
 
@@ -235,8 +238,6 @@ const Login = () => {
               <div className="mt-6 p-4 bg-muted/50 rounded-lg">
                 <p className="text-xs text-muted-foreground text-center">
                   We only use your email to send the code. We never read your inbox.
-                  <br />
-                  (You can optionally connect Gmail/Outlook later to auto-import subscriptions.)
                 </p>
               </div>
 
