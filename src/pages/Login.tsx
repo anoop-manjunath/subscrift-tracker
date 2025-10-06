@@ -201,9 +201,9 @@ const Login = () => {
             <>
               <div className="text-center mb-8">
                 <div className="flex justify-center mb-6">
-                  <img src="/placeholder.svg" alt="Logo" className="h-16 w-16" />
+                  <img src="/logo.png" alt="Logo" className="h-16 w-16" />
                 </div>
-                <h1 className="text-2xl md:text-3xl font-bold text-gradient mb-3">Track all your subscriptions in one place</h1>
+                <h1 className="text-xl md:text-2xl font-bold text-gradient mb-3">Track all your subscriptions in one place</h1>
                 <p className="text-muted-foreground mb-1">Sign in or create an account with a 6-digit code.</p>
                 <p className="text-muted-foreground">Enter your email and we'll send the code.</p>
               </div>
