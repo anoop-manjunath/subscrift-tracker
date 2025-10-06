@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { Subscription } from '../../types/subscription';
 import { AddSubscriptionDialog } from './AddSubscriptionDialog';
+import { FilterDialog } from './FilterDialog';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { useSettings } from '../../hooks/useSettings';
 import { setFilters } from '../../features/subscriptions/subscriptionsSlice';
@@ -35,8 +36,10 @@ export const SubscriptionsList: React.FC<SubscriptionsListProps> = memo(({
   const { t } = useTranslation();
   const { formatPrice: formatCurrency, formatDate: formatDateSetting } = useSettings();
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+  const [isFilterDialogOpen, setIsFilterDialogOpen] = useState(false);
   const dispatch = useAppDispatch();
-  const { search } = useAppSelector(state => state.subscriptions.filters);
+  const filters = useAppSelector(state => state.subscriptions.filters);
+  const { search } = filters;
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setFilters({ search: e.target.value }));
@@ -109,9 +112,18 @@ export const SubscriptionsList: React.FC<SubscriptionsListProps> = memo(({
                 className="pl-10 w-64 bg-background/50 border-card-border focus:bg-background transition-fast"
               />
             </div>
-            <Button variant="outline" size="sm">
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => setIsFilterDialogOpen(true)}
+            >
               <Filter className="h-4 w-4 mr-2" />
               Filter
+              {(filters.categories.length + filters.statuses.length + filters.currencies.length) > 0 && (
+                <Badge variant="default" className="ml-2 h-5 w-5 p-0 flex items-center justify-center text-xs">
+                  {filters.categories.length + filters.statuses.length + filters.currencies.length}
+                </Badge>
+              )}
             </Button>
             <Button size="sm" className="bg-gradient-primary" onClick={() => setIsAddDialogOpen(true)}>
               <Plus className="h-4 w-4 mr-2" />
@@ -247,6 +259,11 @@ export const SubscriptionsList: React.FC<SubscriptionsListProps> = memo(({
       <AddSubscriptionDialog 
         open={isAddDialogOpen} 
         onOpenChange={setIsAddDialogOpen} 
+      />
+      
+      <FilterDialog 
+        open={isFilterDialogOpen} 
+        onOpenChange={setIsFilterDialogOpen} 
       />
     </Card>
   );
