@@ -12,10 +12,12 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { User, KeyRound, LogOut } from 'lucide-react';
+import { EditProfileDialog } from './EditProfileDialog';
 
 export const UserProfileDropdown = () => {
   const { user, signOut } = useAuth();
   const { t } = useTranslation();
+  const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
 
   const getInitials = () => {
     if (!user?.email) return 'U';
@@ -54,7 +56,10 @@ export const UserProfileDropdown = () => {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator className="bg-border" />
-        <DropdownMenuItem className="cursor-pointer">
+        <DropdownMenuItem 
+          className="cursor-pointer"
+          onClick={() => setIsEditProfileOpen(true)}
+        >
           <User className="mr-2 h-4 w-4" />
           <span>Edit Profile</span>
         </DropdownMenuItem>
@@ -71,6 +76,11 @@ export const UserProfileDropdown = () => {
           <span>Logout</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
+      
+      <EditProfileDialog 
+        open={isEditProfileOpen} 
+        onOpenChange={setIsEditProfileOpen} 
+      />
     </DropdownMenu>
   );
 };
