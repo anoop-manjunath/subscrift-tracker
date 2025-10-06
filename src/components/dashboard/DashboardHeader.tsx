@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Plus, Settings, Bell, Search } from 'lucide-react';
 import { AddSubscriptionDialog } from '@/components/subscriptions/AddSubscriptionDialog';
 import { SettingsDialog } from '@/components/settings/SettingsDialog';
+import { UserProfileDropdown } from './UserProfileDropdown';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { setFilters } from '../../features/subscriptions/subscriptionsSlice';
 
@@ -60,6 +61,8 @@ export const DashboardHeader = () => {
               >
                 <Bell className="h-5 w-5" />
               </Button>
+
+              <UserProfileDropdown />
               
               <Button 
                 variant="ghost" 
