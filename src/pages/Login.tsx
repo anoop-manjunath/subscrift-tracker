@@ -201,7 +201,7 @@ const Login = () => {
             <>
               <div className="text-center mb-8">
                 <div className="flex justify-center mb-6">
-                  <img src="/logo.png?v=2" alt="SubTrackr Logo" className="h-24 w-24 drop-shadow-lg" />
+                  <img src="/logo.png?v=3" alt="SubTrackr Logo" className="h-24 w-24 drop-shadow-lg" />
                 </div>
                 <h1 className="text-xl md:text-2xl font-bold text-gradient mb-3">Track all your subscriptions in one place</h1>
                 <p className="text-muted-foreground mb-1">Sign in or create an account with a 6-digit code.</p>
