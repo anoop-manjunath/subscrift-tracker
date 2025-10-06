@@ -1,6 +1,13 @@
 // Mock Data for Development and Testing
 import { Subscription, SubscriptionCategory } from '../types/subscription';
 
+// Helper to generate dates relative to today
+const getRelativeDate = (daysFromNow: number): string => {
+  const date = new Date();
+  date.setDate(date.getDate() + daysFromNow);
+  return date.toISOString();
+};
+
 // Generate realistic mock subscriptions
 export const mockSubscriptions: Subscription[] = [
   {
@@ -11,8 +18,8 @@ export const mockSubscriptions: Subscription[] = [
     price: 1299, // $12.99 in cents
     currency: 'USD',
     billingCycle: 'monthly',
-    nextBillingDate: '2024-02-15T00:00:00Z',
-    lastBillingDate: '2024-01-15T00:00:00Z',
+    nextBillingDate: getRelativeDate(5),
+    lastBillingDate: getRelativeDate(-25),
     status: 'active',
     paymentMethod: 'credit_card',
     tags: ['entertainment', 'video'],
@@ -20,8 +27,8 @@ export const mockSubscriptions: Subscription[] = [
     logoUrl: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=100&h=100&fit=crop',
     websiteUrl: 'https://netflix.com',
     notes: 'Family plan shared with household',
-    createdAt: '2023-12-01T00:00:00Z',
-    updatedAt: '2024-01-15T00:00:00Z',
+    createdAt: getRelativeDate(-60),
+    updatedAt: getRelativeDate(-25),
   },
   {
     id: 'sub_2',
@@ -31,8 +38,8 @@ export const mockSubscriptions: Subscription[] = [
     price: 999, // $9.99
     currency: 'USD',
     billingCycle: 'monthly',
-    nextBillingDate: '2024-02-20T00:00:00Z',
-    lastBillingDate: '2024-01-20T00:00:00Z',
+    nextBillingDate: getRelativeDate(10),
+    lastBillingDate: getRelativeDate(-20),
     status: 'active',
     paymentMethod: 'credit_card',
     tags: ['music', 'audio'],
@@ -40,8 +47,8 @@ export const mockSubscriptions: Subscription[] = [
     logoUrl: 'https://images.unsplash.com/photo-1611339555312-e607c8352fd7?w=100&h=100&fit=crop',
     websiteUrl: 'https://spotify.com',
     notes: 'Individual plan with offline downloads',
-    createdAt: '2023-11-15T00:00:00Z',
-    updatedAt: '2024-01-20T00:00:00Z',
+    createdAt: getRelativeDate(-75),
+    updatedAt: getRelativeDate(-20),
   },
   {
     id: 'sub_3',
@@ -51,7 +58,7 @@ export const mockSubscriptions: Subscription[] = [
     price: 5299, // $52.99
     currency: 'USD',
     billingCycle: 'monthly',
-    nextBillingDate: '2024-02-10T00:00:00Z',
+    nextBillingDate: getRelativeDate(1),
     status: 'active',
     paymentMethod: 'credit_card',
     tags: ['design', 'creative', 'professional'],
@@ -59,8 +66,8 @@ export const mockSubscriptions: Subscription[] = [
     logoUrl: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=100&h=100&fit=crop',
     websiteUrl: 'https://adobe.com',
     notes: 'Used for client work - business expense',
-    createdAt: '2023-10-01T00:00:00Z',
-    updatedAt: '2024-01-10T00:00:00Z',
+    createdAt: getRelativeDate(-120),
+    updatedAt: getRelativeDate(-30),
   },
   {
     id: 'sub_4',
@@ -70,7 +77,7 @@ export const mockSubscriptions: Subscription[] = [
     price: 15750, // $157.50 (variable usage)
     currency: 'USD',
     billingCycle: 'monthly',
-    nextBillingDate: '2024-02-01T00:00:00Z',
+    nextBillingDate: getRelativeDate(0),
     status: 'active',
     paymentMethod: 'credit_card',
     tags: ['cloud', 'hosting', 'development'],
@@ -78,8 +85,8 @@ export const mockSubscriptions: Subscription[] = [
     logoUrl: 'https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?w=100&h=100&fit=crop',
     websiteUrl: 'https://aws.amazon.com',
     notes: 'Hosting multiple client projects',
-    createdAt: '2023-09-01T00:00:00Z',
-    updatedAt: '2024-01-01T00:00:00Z',
+    createdAt: getRelativeDate(-150),
+    updatedAt: getRelativeDate(-30),
   },
   {
     id: 'sub_5',
@@ -89,7 +96,7 @@ export const mockSubscriptions: Subscription[] = [
     price: 400, // $4.00
     currency: 'USD',
     billingCycle: 'monthly',
-    nextBillingDate: '2024-02-12T00:00:00Z',
+    nextBillingDate: getRelativeDate(2),
     status: 'active',
     paymentMethod: 'credit_card',
     tags: ['development', 'git', 'collaboration'],
@@ -97,8 +104,8 @@ export const mockSubscriptions: Subscription[] = [
     logoUrl: 'https://images.unsplash.com/photo-1618401479427-c8ef9465fbe1?w=100&h=100&fit=crop',
     websiteUrl: 'https://github.com',
     notes: 'Private repositories for personal projects',
-    createdAt: '2023-08-15T00:00:00Z',
-    updatedAt: '2024-01-12T00:00:00Z',
+    createdAt: getRelativeDate(-165),
+    updatedAt: getRelativeDate(-28),
   },
   {
     id: 'sub_6',
@@ -108,7 +115,7 @@ export const mockSubscriptions: Subscription[] = [
     price: 1200, // $12.00
     currency: 'USD',
     billingCycle: 'monthly',
-    nextBillingDate: '2024-02-18T00:00:00Z',
+    nextBillingDate: getRelativeDate(8),
     status: 'active',
     paymentMethod: 'credit_card',
     tags: ['design', 'prototyping', 'collaboration'],
@@ -116,8 +123,8 @@ export const mockSubscriptions: Subscription[] = [
     logoUrl: 'https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=100&h=100&fit=crop',
     websiteUrl: 'https://figma.com',
     notes: 'Team collaboration for UI/UX work',
-    createdAt: '2023-11-01T00:00:00Z',
-    updatedAt: '2024-01-18T00:00:00Z',
+    createdAt: getRelativeDate(-90),
+    updatedAt: getRelativeDate(-22),
   },
   {
     id: 'sub_7',
@@ -127,7 +134,7 @@ export const mockSubscriptions: Subscription[] = [
     price: 800, // $8.00
     currency: 'USD',
     billingCycle: 'monthly',
-    nextBillingDate: '2024-02-25T00:00:00Z',
+    nextBillingDate: getRelativeDate(15),
     status: 'active',
     paymentMethod: 'credit_card',
     tags: ['productivity', 'notes', 'planning'],
@@ -135,8 +142,8 @@ export const mockSubscriptions: Subscription[] = [
     logoUrl: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=100&h=100&fit=crop',
     websiteUrl: 'https://notion.so',
     notes: 'Used for project management and documentation',
-    createdAt: '2023-12-15T00:00:00Z',
-    updatedAt: '2024-01-25T00:00:00Z',
+    createdAt: getRelativeDate(-45),
+    updatedAt: getRelativeDate(-5),
   },
   {
     id: 'sub_8',
@@ -146,7 +153,7 @@ export const mockSubscriptions: Subscription[] = [
     price: 799, // $7.99
     currency: 'USD',
     billingCycle: 'monthly',
-    nextBillingDate: '2024-02-08T00:00:00Z',
+    nextBillingDate: getRelativeDate(50),
     status: 'paused',
     paymentMethod: 'credit_card',
     tags: ['entertainment', 'family', 'movies'],
@@ -154,8 +161,8 @@ export const mockSubscriptions: Subscription[] = [
     logoUrl: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=100&h=100&fit=crop',
     websiteUrl: 'https://disneyplus.com',
     notes: 'Paused temporarily to save money',
-    createdAt: '2023-10-15T00:00:00Z',
-    updatedAt: '2024-01-08T00:00:00Z',
+    createdAt: getRelativeDate(-105),
+    updatedAt: getRelativeDate(-52),
   },
   {
     id: 'sub_9',
@@ -165,7 +172,7 @@ export const mockSubscriptions: Subscription[] = [
     price: 1000, // $10.00
     currency: 'USD',
     billingCycle: 'monthly',
-    nextBillingDate: '2024-02-14T00:00:00Z',
+    nextBillingDate: getRelativeDate(4),
     status: 'active',
     paymentMethod: 'credit_card',
     tags: ['email', 'marketing', 'automation'],
@@ -173,8 +180,8 @@ export const mockSubscriptions: Subscription[] = [
     logoUrl: 'https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=100&h=100&fit=crop',
     websiteUrl: 'https://mailchimp.com',
     notes: 'For newsletter and client communications',
-    createdAt: '2023-09-20T00:00:00Z',
-    updatedAt: '2024-01-14T00:00:00Z',
+    createdAt: getRelativeDate(-140),
+    updatedAt: getRelativeDate(-26),
   },
   {
     id: 'sub_10',
@@ -184,7 +191,7 @@ export const mockSubscriptions: Subscription[] = [
     price: 2500, // $25.00
     currency: 'USD',
     billingCycle: 'monthly',
-    nextBillingDate: '2024-02-03T00:00:00Z',
+    nextBillingDate: getRelativeDate(3),
     status: 'active',
     paymentMethod: 'credit_card',
     tags: ['accounting', 'taxes', 'business'],
@@ -192,7 +199,7 @@ export const mockSubscriptions: Subscription[] = [
     logoUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=100&h=100&fit=crop',
     websiteUrl: 'https://quickbooks.intuit.com',
     notes: 'Essential for business accounting and tax prep',
-    createdAt: '2023-08-01T00:00:00Z',
-    updatedAt: '2024-01-03T00:00:00Z',
+    createdAt: getRelativeDate(-180),
+    updatedAt: getRelativeDate(-27),
   },
 ];
