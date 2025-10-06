@@ -35,6 +35,10 @@
     --card-foreground: 222 47% 11%;
     --card-border: 222 13% 91%;
     
+    /* Popover & Dropdown */
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    
     /* Interactive Elements */
     --secondary: 222 13% 96%;
     --secondary-foreground: 222 47% 11%;
@@ -97,6 +101,10 @@
     --card: 222 47% 8%;
     --card-foreground: 222 13% 95%;
     --card-border: 222 47% 15%;
+    
+    /* Popover & Dropdown */
+    --popover: 222 47% 8%;
+    --popover-foreground: 222 13% 95%;
     
     --secondary: 222 47% 12%;
     --secondary-foreground: 222 13% 95%;
