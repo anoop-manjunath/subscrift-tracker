@@ -58,8 +58,15 @@ export const SpendingChart: React.FC<SpendingChartProps> = ({ data, loading }) =
             return (
               <div 
                 key={index} 
-                className="flex flex-col items-center flex-1 group"
+                className="flex flex-col items-center flex-1 group relative"
               >
+                {/* Value tooltip on hover */}
+                <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-fast pointer-events-none z-10">
+                  <div className="bg-foreground text-background text-xs px-2 py-1 rounded shadow-lg whitespace-nowrap">
+                    {formatPrice(item.amount)}
+                  </div>
+                </div>
+                
                 {/* Bar */}
                 <div 
                   className={`w-full mb-2 rounded-t-lg transition-smooth cursor-pointer
@@ -72,14 +79,7 @@ export const SpendingChart: React.FC<SpendingChartProps> = ({ data, loading }) =
                     height: `${height}%`,
                     animationDelay: `${index * 50}ms`,
                   }}
-                >
-                  {/* Value tooltip on hover */}
-                  <div className="opacity-0 group-hover:opacity-100 transition-fast -mt-8 mb-2 text-center">
-                    <div className="bg-foreground text-background text-xs px-2 py-1 rounded shadow-lg">
-                      {formatPrice(item.amount)}
-                    </div>
-                  </div>
-                </div>
+                />
                 
                 {/* Month label */}
                 <span className="text-xs text-muted-foreground rotate-45 origin-bottom-left">
