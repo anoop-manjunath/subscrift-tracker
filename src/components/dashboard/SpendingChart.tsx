@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { BarChart3 } from 'lucide-react';
 import { SpendingAnalytics } from '../../types/subscription';
+import { useSettings } from '../../hooks/useSettings';
 
 interface SpendingChartProps {
   data: SpendingAnalytics['monthlyTrend'];
@@ -11,6 +12,8 @@ interface SpendingChartProps {
 }
 
 export const SpendingChart: React.FC<SpendingChartProps> = ({ data, loading }) => {
+  const { formatPrice } = useSettings();
+  
   if (loading) {
     return (
       <Card className="bg-card border-card-border">
@@ -73,7 +76,7 @@ export const SpendingChart: React.FC<SpendingChartProps> = ({ data, loading }) =
                   {/* Value tooltip on hover */}
                   <div className="opacity-0 group-hover:opacity-100 transition-fast -mt-8 mb-2 text-center">
                     <div className="bg-foreground text-background text-xs px-2 py-1 rounded shadow-lg">
-                      ${item.amount.toFixed(0)}
+                      {formatPrice(item.amount)}
                     </div>
                   </div>
                 </div>

@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Calendar, Clock } from 'lucide-react';
 import { SpendingAnalytics } from '../../types/subscription';
+import { useSettings } from '../../hooks/useSettings';
 
 interface UpcomingPaymentsProps {
   payments: SpendingAnalytics['upcomingPayments'];
@@ -12,6 +13,8 @@ interface UpcomingPaymentsProps {
 }
 
 export const UpcomingPayments: React.FC<UpcomingPaymentsProps> = ({ payments, loading }) => {
+  const { formatPrice } = useSettings();
+  
   if (loading) {
     return (
       <Card className="bg-card border-card-border">
@@ -114,7 +117,7 @@ export const UpcomingPayments: React.FC<UpcomingPaymentsProps> = ({ payments, lo
                   
                   <div className="text-right">
                     <p className="font-semibold text-foreground">
-                      ${payment.totalAmount.toFixed(2)}
+                      {formatPrice(payment.totalAmount)}
                     </p>
                     <Badge 
                       variant={getBadgeVariant(daysUntil)}
