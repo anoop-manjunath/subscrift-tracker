@@ -25,6 +25,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setFilters, clearFilters } from '@/features/subscriptions/subscriptionsSlice';
 import { SubscriptionCategory, SubscriptionStatus, Currency } from '@/types/subscription';
 import { X } from 'lucide-react';
+import { useSettings } from '@/hooks/useSettings';
 
 interface FilterDialogProps {
   open: boolean;
@@ -35,6 +36,7 @@ export const FilterDialog: React.FC<FilterDialogProps> = ({ open, onOpenChange }
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const filters = useAppSelector(state => state.subscriptions.filters);
+  const { formatPrice } = useSettings();
 
   const categories: SubscriptionCategory[] = [
     'streaming', 'productivity', 'cloud', 'development', 
@@ -229,7 +231,7 @@ export const FilterDialog: React.FC<FilterDialogProps> = ({ open, onOpenChange }
             <div className="flex items-center justify-between">
               <Label className="text-foreground font-medium">Price Range</Label>
               <span className="text-sm text-muted-foreground">
-                ${filters.priceRange.min} - ${filters.priceRange.max}
+                {formatPrice(filters.priceRange.min)} - {formatPrice(filters.priceRange.max)}
               </span>
             </div>
             <Slider
@@ -241,8 +243,8 @@ export const FilterDialog: React.FC<FilterDialogProps> = ({ open, onOpenChange }
               className="py-4"
             />
             <div className="flex justify-between text-xs text-muted-foreground">
-              <span>$0</span>
-              <span>$10,000</span>
+              <span>{formatPrice(0)}</span>
+              <span>{formatPrice(10000)}</span>
             </div>
           </div>
         </div>
